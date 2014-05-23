@@ -33,7 +33,9 @@
 #ifndef __MEMORY_MAPPED_FILE_WIN32_H__
 #define __MEMORY_MAPPED_FILE_WIN32_H__
 
+#ifndef NOMINMAX
 #define NOMINMAX    // To fix min/max conflicts with STL.
+#endif
 
 #include <memory.h>
 #include <windows.h>
@@ -56,7 +58,7 @@ public:
     {
         m_hFile = INVALID_HANDLE_VALUE;
         m_hMapping = INVALID_HANDLE_VALUE;
-        m_mode = 0;
+        m_mode = (std::ios_base::openmode)0;
         m_data = NULL;
         m_size = 0;
     }
